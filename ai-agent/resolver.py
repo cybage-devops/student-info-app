@@ -75,7 +75,7 @@ def resolve_issue(issue_title, issue_body):
     prompt = f"Please resolve the following GitHub Issue.\n\nIssue Title: {issue_title}\nIssue Body: {issue_body}\n"
     
     chat = client.chats.create(
-        model="gemini-2.5-flash",
+        model="gemini-2.0-flash",
         config=types.GenerateContentConfig(
             system_instruction=system_instruction,
             tools=[list_files, read_file, write_file, search_code, finish],
