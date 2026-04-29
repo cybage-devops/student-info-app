@@ -13,13 +13,14 @@ app = FastAPI(
     redoc_url="/redoc",
 )
 
-# CORS configuration — allow frontend origins
-allowed_origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173,http://localhost:3000").split(",")
+# CORS configuration — allow all origins for Cloud Run deployment
+# For production, restrict to specific frontend URLs via ALLOWED_ORIGINS env var
+allowed_origins = os.getenv("ALLOWED_ORIGINS", "*").split(",")
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=allowed_origins,
-    allow_credentials=True,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
