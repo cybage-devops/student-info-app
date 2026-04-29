@@ -107,7 +107,7 @@ export default function StudentTable({ students, loading, searchQuery, onSearchC
                         {student.first_name[0]}{student.last_name[0]}
                       </div>
                       <div>
-                        <span className="student-fullname">{student.first_name} {student.last_name}</span>
+                        <span className="student-fullname">{student.first_name} {student.middle_name ? student.middle_name + ' ' : ''}{student.last_name}</span>
                         {student.phone && <span className="student-phone">{student.phone}</span>}
                       </div>
                     </div>

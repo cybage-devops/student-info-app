@@ -81,6 +81,7 @@ class StudentDatabase:
             students = [
                 s for s in students
                 if search_lower in s["first_name"].lower()
+                or (s.get("middle_name") and search_lower in s["middle_name"].lower())
                 or search_lower in s["last_name"].lower()
                 or search_lower in s["email"].lower()
                 or search_lower in s["course"].lower()
