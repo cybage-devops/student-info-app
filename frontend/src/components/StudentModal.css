@@ -1,0 +1,26 @@
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+}
+
+.input-error {
+  border-color: var(--color-accent-danger) !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12) !important;
+}
+
+.field-error {
+  font-size: var(--font-size-xs);
+  color: #f87171;
+  margin-top: 2px;
+}
+
+@media (max-width: 480px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-content {
+    margin: var(--space-md);
+  }
+}
