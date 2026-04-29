@@ -85,9 +85,19 @@ def resolve_issue(issue_title, issue_body):
     
     print(f"Starting resolution for issue: {issue_title}")
     
-    # Send the initial message
-    response = chat.send_message(prompt)
-    
+    import time
+    max_retries = 5
+    for attempt in range(max_retries):
+        try:
+            response = chat.send_message(prompt)
+            break
+        except Exception as e:
+            print(f"Attempt {attempt + 1} failed: {e}")
+            if attempt == max_retries - 1:
+                print("Max retries reached. Exiting.")
+                sys.exit(1)
+            print("Retrying in 10 seconds...")
+            time.sleep(10)
     # We loop to allow the agent to make multiple tool calls. 
     # With google-genai, if the agent outputs text without a tool call, we feed it back if it hasn't finished,
     # but the SDK auto-handles tool loop internally. We just check if it finished.
