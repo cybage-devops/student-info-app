@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import './StudentModal.css';
 
 const emptyForm = {
-  first_name: '', middle_name: '', last_name: '', email: '', phone: '',
+  first_name: '', last_name: '', email: '', phone: '',
   course: '', enrollment_date: new Date().toISOString().split('T')[0], gpa: '',
 };
 
@@ -16,7 +16,6 @@ export default function StudentModal({ isOpen, student, onClose, onSave }) {
     if (student) {
       setForm({
         first_name: student.first_name || '',
-        middle_name: student.middle_name || '',
         last_name: student.last_name || '',
         email: student.email || '',
         phone: student.phone || '',
@@ -78,10 +77,6 @@ export default function StudentModal({ isOpen, student, onClose, onSave }) {
                 <label className="input-label" htmlFor="first_name">First Name *</label>
                 <input className={`input-field ${errors.first_name ? 'input-error' : ''}`} id="first_name" value={form.first_name} onChange={e => handleChange('first_name', e.target.value)} placeholder="Enter first name" />
                 {errors.first_name && <span className="field-error">{errors.first_name}</span>}
-              </div>
-              <div className="input-group">
-                <label className="input-label" htmlFor="middle_name">Middle Name</label>
-                <input className="input-field" id="middle_name" value={form.middle_name} onChange={e => handleChange('middle_name', e.target.value)} placeholder="Enter middle name" />
               </div>
             </div>
             <div className="input-group">
