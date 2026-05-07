@@ -22,6 +22,7 @@ class StudentDatabase:
         sample_students = [
             {
                 "first_name": "Aarav",
+                "middle_name": "S.",
                 "last_name": "Sharma",
                 "email": "aarav.sharma@university.edu",
                 "phone": "+91-9876543210",
@@ -31,6 +32,7 @@ class StudentDatabase:
             },
             {
                 "first_name": "Priya",
+                "middle_name": "K.",
                 "last_name": "Patel",
                 "email": "priya.patel@university.edu",
                 "phone": "+91-9876543211",
@@ -40,6 +42,7 @@ class StudentDatabase:
             },
             {
                 "first_name": "Rahul",
+                "middle_name": "V.",
                 "last_name": "Kumar",
                 "email": "rahul.kumar@university.edu",
                 "phone": "+91-9876543212",
@@ -49,6 +52,7 @@ class StudentDatabase:
             },
             {
                 "first_name": "Sneha",
+                "middle_name": "R.",
                 "last_name": "Reddy",
                 "email": "sneha.reddy@university.edu",
                 "phone": "+91-9876543213",
@@ -58,6 +62,7 @@ class StudentDatabase:
             },
             {
                 "first_name": "Vikram",
+                "middle_name": "P.",
                 "last_name": "Singh",
                 "email": "vikram.singh@university.edu",
                 "phone": "+91-9876543214",
