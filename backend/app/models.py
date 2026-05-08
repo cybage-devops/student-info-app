@@ -12,7 +12,7 @@ class StudentBase(BaseModel):
     middle_name: str = Field(..., max_length=100, description="Student's middle name")
     last_name: str = Field(..., min_length=1, max_length=100, description="Student's last name")
     email: str = Field(..., description="Student's email address")
-    phone: Optional[str] = Field(None, max_length=20, description="Student's phone number")
+    phone: str = Field(..., max_length=20, description="Student's phone number")
     course: str = Field(..., min_length=1, max_length=200, description="Course or department")
     enrollment_date: date = Field(default_factory=date.today, description="Date of enrollment")
     gpa: Optional[float] = Field(None, ge=0.0, le=4.0, description="Grade Point Average (0.0 - 4.0)")
@@ -53,4 +53,3 @@ class StudentResponse(StudentBase):
                 "gpa": 3.85
             }
         }
-}
