@@ -21,6 +21,7 @@ class StudentDatabase:
         """Seed the database with sample student records."""
         sample_students = [
             {
+                "sr_no": 1,
                 "first_name": "Aarav",
                 "middle_name": "S.",
                 "last_name": "Sharma",
@@ -31,6 +32,7 @@ class StudentDatabase:
                 "gpa": 3.92
             },
             {
+                "sr_no": 2,
                 "first_name": "Priya",
                 "middle_name": "K.",
                 "last_name": "Patel",
@@ -41,6 +43,7 @@ class StudentDatabase:
                 "gpa": 3.78
             },
             {
+                "sr_no": 3,
                 "first_name": "Rahul",
                 "middle_name": "V.",
                 "last_name": "Kumar",
@@ -51,6 +54,7 @@ class StudentDatabase:
                 "gpa": 3.65
             },
             {
+                "sr_no": 4,
                 "first_name": "Sneha",
                 "middle_name": "R.",
                 "last_name": "Reddy",
@@ -61,6 +65,7 @@ class StudentDatabase:
                 "gpa": 3.88
             },
             {
+                "sr_no": 5,
                 "first_name": "Vikram",
                 "middle_name": "P.",
                 "last_name": "Singh",
