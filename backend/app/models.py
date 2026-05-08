@@ -9,7 +9,7 @@ import uuid
 class StudentBase(BaseModel):
     """Base student model with common fields."""
     first_name: str = Field(..., min_length=1, max_length=100, description="Student's first name")
-    middle_name: Optional[str] = Field(None, max_length=100, description="Student's middle name")
+    middle_name: str = Field(..., max_length=100, description="Student's middle name")
     last_name: str = Field(..., min_length=1, max_length=100, description="Student's last name")
     email: str = Field(..., description="Student's email address")
     phone: Optional[str] = Field(None, max_length=20, description="Student's phone number")
@@ -53,3 +53,4 @@ class StudentResponse(StudentBase):
                 "gpa": 3.85
             }
         }
+}
