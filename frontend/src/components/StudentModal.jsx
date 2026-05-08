@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import './StudentModal.css';
 
 const emptyForm = {
-  first_name: '', middle_name: '', last_name: '', email: '', phone: '',
+  first_name: '', middle_name: '', email: '', phone: '',
   course: '', enrollment_date: new Date().toISOString().split('T')[0], gpa: '',
 };
 
@@ -17,7 +17,6 @@ export default function StudentModal({ isOpen, student, onClose, onSave }) {
       setForm({
         first_name: student.first_name || '',
         middle_name: student.middle_name || '',
-        last_name: student.last_name || '',
         email: student.email || '',
         phone: student.phone || '',
         course: student.course || '',
@@ -34,9 +33,8 @@ export default function StudentModal({ isOpen, student, onClose, onSave }) {
     const e = {};
     if (!form.first_name.trim()) e.first_name = 'First name is required';
     if (!form.middle_name.trim()) e.middle_name = 'Middle name is required';
-    if (!form.last_name.trim()) e.last_name = 'Last name is required';
     if (!form.email.trim()) e.email = 'Email is required';
-    else if (!/\S+@\S+\.\S+/.test(form.email)) e.email = 'Invalid email format';
+    else if (!/\S+@\S+\.\S/.test(form.email)) e.email = 'Invalid email format';
     if (!form.course.trim()) e.course = 'Course is required';
     if (form.gpa && (isNaN(form.gpa) || form.gpa < 0 || form.gpa > 4))
       e.gpa = 'GPA must be between 0 and 4';
@@ -87,11 +85,6 @@ export default function StudentModal({ isOpen, student, onClose, onSave }) {
               {errors.middle_name && <span className="field-error">{errors.middle_name}</span>}
             </div>
             <div className="input-group">
-              <label className="input-label" htmlFor="last_name">Last Name *</label>
-              <input className={`input-field ${errors.last_name ? 'input-error' : ''}`} id="last_name" value={form.last_name} onChange={e => handleChange('last_name', e.target.value)} placeholder="Enter last name" />
-              {errors.last_name && <span className="field-error">{errors.last_name}</span>}
-            </div>
-            <div className="input-group">
               <label className="input-label" htmlFor="email">Email *</label>
               <input className={`input-field ${errors.email ? 'input-error' : ''}`} id="email" type="email" value={form.email} onChange={e => handleChange('email', e.target.value)} placeholder="student@university.edu" />
               {errors.email && <span className="field-error">{errors.email}</span>}
@@ -119,7 +112,7 @@ export default function StudentModal({ isOpen, student, onClose, onSave }) {
           </div>
           <div className="modal-footer">
             <button type="button" className="btn btn-ghost" onClick={onClose}>Cancel</button>
-            <button type="submit" className="btn btn-primary" disabled={saving} id="save-student-btn">
+            <button type="submit" className="btn btn-primary" disabled={saving} id="save-student-btn" >
               {saving ? 'Saving...' : (isEdit ? 'Update Student' : 'Add Student')}
             </button>
           </div>
