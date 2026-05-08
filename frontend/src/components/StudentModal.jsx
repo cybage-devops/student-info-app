@@ -33,6 +33,7 @@ export default function StudentModal({ isOpen, student, onClose, onSave }) {
   const validate = () => {
     const e = {};
     if (!form.first_name.trim()) e.first_name = 'First name is required';
+    if (!form.middle_name.trim()) e.middle_name = 'Middle name is required';
     if (!form.last_name.trim()) e.last_name = 'Last name is required';
     if (!form.email.trim()) e.email = 'Email is required';
     else if (!/\S+@\S+\.\S+/.test(form.email)) e.email = 'Invalid email format';
@@ -81,8 +82,9 @@ export default function StudentModal({ isOpen, student, onClose, onSave }) {
               </div>
             </div>
             <div className="input-group">
-              <label className="input-label" htmlFor="middle_name">Middle Name</label>
-              <input className="input-field" id="middle_name" value={form.middle_name} onChange={e => handleChange('middle_name', e.target.value)} placeholder="Enter middle name" />
+              <label className="input-label" htmlFor="middle_name">Middle Name *</label>
+              <input className={`input-field ${errors.middle_name ? 'input-error' : ''}`} id="middle_name" value={form.middle_name} onChange={e => handleChange('middle_name', e.target.value)} placeholder="Enter middle name" required />
+              {errors.middle_name && <span className="field-error">{errors.middle_name}</span>}
             </div>
             <div className="input-group">
               <label className="input-label" htmlFor="last_name">Last Name *</label>
