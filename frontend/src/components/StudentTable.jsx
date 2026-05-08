@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './StudentTable.css';
 
-export default function StudentTable({ students, loading, searchQuery, onSearchChange, onEdit, onDelete }) {
+export default function StudentTable({ students = [], loading, searchQuery, onSearchChange, onEdit, onDelete }) {
   const [sortField, setSortField] = useState('first_name');
   const [sortDir, setSortDir] = useState('asc');
 
@@ -104,7 +104,7 @@ export default function StudentTable({ students, loading, searchQuery, onSearchC
                   <td>
                     <div className="student-name-cell">
                       <div className="student-avatar">
-                        {student.first_name[0]}{student.last_name[0]}
+                        {student.first_name?.[0] || ''}{student.last_name?.[0] || ''}
                       </div>
                       <div>
                         <span className="student-fullname">{student.first_name} {student.middle_name ? student.middle_name + ' ' : ''}{student.last_name}</span>

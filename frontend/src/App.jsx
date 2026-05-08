@@ -32,7 +32,7 @@ function App() {
   const loadStudents = useCallback(async () => {
     try {
       const data = await fetchStudents(searchQuery);
-      setStudents(data);
+      setStudents(data || []);
     } catch (err) {
       addToast('Failed to load students: ' + err.message, 'error');
     } finally {

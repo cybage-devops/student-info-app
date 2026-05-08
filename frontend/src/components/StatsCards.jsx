@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './StatsCards.css';
 
-export default function StatsCards({ students }) {
+export default function StatsCards({ students = [] }) {
   const [animatedValues, setAnimatedValues] = useState({ total: 0, avgGpa: 0, courses: 0 });
 
   const stats = {
