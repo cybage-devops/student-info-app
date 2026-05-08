@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import './StudentModal.css';
 
 const emptyForm = {
-  first_name: '', middle_name: '', email: '', phone: '',
+  first_name: '', email: '', phone: '',
   course: '', enrollment_date: new Date().toISOString().split('T')[0], gpa: '',
 };
 
@@ -16,7 +16,6 @@ export default function StudentModal({ isOpen, student, onClose, onSave }) {
     if (student) {
       setForm({
         first_name: student.first_name || '',
-        middle_name: student.middle_name || '',
         email: student.email || '',
         phone: student.phone || '',
         course: student.course || '',
@@ -32,7 +31,6 @@ export default function StudentModal({ isOpen, student, onClose, onSave }) {
   const validate = () => {
     const e = {};
     if (!form.first_name.trim()) e.first_name = 'First name is required';
-    if (!form.middle_name.trim()) e.middle_name = 'Middle name is required';
     if (!form.email.trim()) e.email = 'Email is required';
     else if (!/\S+@\S+\.\S/.test(form.email)) e.email = 'Invalid email format';
     if (!form.course.trim()) e.course = 'Course is required';
@@ -78,11 +76,6 @@ export default function StudentModal({ isOpen, student, onClose, onSave }) {
                 <input className={`input-field ${errors.first_name ? 'input-error' : ''}`} id="first_name" value={form.first_name} onChange={e => handleChange('first_name', e.target.value)} placeholder="Enter first name" />
                 {errors.first_name && <span className="field-error">{errors.first_name}</span>}
               </div>
-            </div>
-            <div className="input-group">
-              <label className="input-label" htmlFor="middle_name">Middle Name *</label>
-              <input className={`input-field ${errors.middle_name ? 'input-error' : ''}`} id="middle_name" value={form.middle_name} onChange={e => handleChange('middle_name', e.target.value)} placeholder="Enter middle name" required />
-              {errors.middle_name && <span className="field-error">{errors.middle_name}</span>}
             </div>
             <div className="input-group">
               <label className="input-label" htmlFor="email">Email *</label>
