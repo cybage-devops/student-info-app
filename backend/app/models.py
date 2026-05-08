@@ -9,7 +9,6 @@ import uuid
 class StudentBase(BaseModel):
     """Base student model with common fields."""
     first_name: str = Field(..., min_length=1, max_length=100, description="Student's first name")
-    middle_name: str = Field(..., max_length=100, description="Student's middle name")
     email: str = Field(..., description="Student's email address")
     phone: str = Field(..., max_length=20, description="Student's phone number")
     course: str = Field(..., min_length=1, max_length=200, description="Course or department")
@@ -25,7 +24,6 @@ class StudentCreate(StudentBase):
 class StudentUpdate(BaseModel):
     """Model for updating an existing student (all fields optional)."""
     first_name: Optional[str] = Field(None, min_length=1, max_length=100)
-    middle_name: Optional[str] = Field(None, max_length=100)
     email: Optional[str] = None
     phone: Optional[str] = Field(None, max_length=20)
     course: Optional[str] = Field(None, min_length=1, max_length=200)
@@ -42,7 +40,6 @@ class StudentResponse(StudentBase):
             "example": {
                 "id": "stu-abc123",
                 "first_name": "John",
-                "middle_name": "M.",
                 "email": "john.doe@university.edu",
                 "phone": "+1-555-0100",
                 "course": "Computer Science",
