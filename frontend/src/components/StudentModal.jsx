@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import './StudentModal.css';
 
 const emptyForm = {
-  first_name: '', email: '', phone: '',
+  sr_no: '', first_name: '', email: '', phone: '',
   course: '', enrollment_date: new Date().toISOString().split('T')[0], gpa: '',
 };
 
@@ -15,6 +15,7 @@ export default function StudentModal({ isOpen, student, onClose, onSave }) {
   useEffect(() => {
     if (student) {
       setForm({
+        sr_no: student.sr_no != null ? String(student.sr_no) : '',
         first_name: student.first_name || '',
         email: student.email || '',
         phone: student.phone || '',
@@ -30,6 +31,8 @@ export default function StudentModal({ isOpen, student, onClose, onSave }) {
 
   const validate = () => {
     const e = {};
+    if (!form.sr_no.trim()) e.sr_no = 'Sr No is required';
+    else if (isNaN(form.sr_no) || parseInt(form.sr_no) <= 0) e.sr_no = 'Sr No must be a positive number';
     if (!form.first_name.trim()) e.first_name = 'First name is required';
     if (!form.email.trim()) e.email = 'Email is required';
     else if (!/\S+@\S+\.\S/.test(form.email)) e.email = 'Invalid email format';
@@ -46,6 +49,7 @@ export default function StudentModal({ isOpen, student, onClose, onSave }) {
     setSaving(true);
     const data = {
       ...form,
+      sr_no: parseInt(form.sr_no),
       gpa: form.gpa ? parseFloat(form.gpa) : null,
     };
     await onSave(data, student?.id);
@@ -71,6 +75,11 @@ export default function StudentModal({ isOpen, student, onClose, onSave }) {
         <form onSubmit={handleSubmit}>
           <div className="modal-body">
             <div className="form-row">
+              <div className="input-group">
+                <label className="input-label" htmlFor="sr_no">Sr No *</label>
+                <input className={`input-field ${errors.sr_no ? 'input-error' : ''}`} id="sr_no" value={form.sr_no} onChange={e => handleChange('sr_no', e.target.value)} placeholder="Enter serial number" type="number" />
+                {errors.sr_no && <span className="field-error">{errors.sr_no}</span>}
+              </div>
               <div className="input-group">
                 <label className="input-label" htmlFor="first_name">First Name *</label>
                 <input className={`input-field ${errors.first_name ? 'input-error' : ''}`} id="first_name" value={form.first_name} onChange={e => handleChange('first_name', e.target.value)} placeholder="Enter first name" />
