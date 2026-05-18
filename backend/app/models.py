@@ -10,7 +10,6 @@ class StudentBase(BaseModel):
     """Base student model with common fields."""
     sr_no: int = Field(..., description="Student's serial number")
     first_name: str = Field(..., min_length=1, max_length=100, description="Student's first name")
-    middle_name: Optional[str] = Field(None, max_length=100, description="Student's middle name")
     last_name: str = Field(..., min_length=1, max_length=100, description="Student's last name")
     email: EmailStr = Field(..., description="Student's email address")
     phone: str = Field(..., max_length=20, description="Student's phone number")
@@ -28,7 +27,6 @@ class StudentUpdate(BaseModel):
     """Model for updating an existing student (all fields optional)."""
     sr_no: Optional[int] = Field(None, description="Student's serial number")
     first_name: Optional[str] = Field(None, min_length=1, max_length=100)
-    middle_name: Optional[str] = Field(None, max_length=100)
     last_name: Optional[str] = Field(None, min_length=1, max_length=100)
     email: Optional[EmailStr] = None
     phone: Optional[str] = Field(None, max_length=20)
@@ -47,7 +45,6 @@ class StudentResponse(StudentBase):
                 "id": "stu-abc123",
                 "sr_no": 1,
                 "first_name": "John",
-                "middle_name": "M.",
                 "last_name": "Doe",
                 "email": "john.doe@university.edu",
                 "phone": "+1-555-0100",
